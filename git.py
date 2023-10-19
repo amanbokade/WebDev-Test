@@ -1,8 +1,8 @@
 import os , random
 
-for i in range(200):
+for i in range(10):
     d = str(i) + 'days ago'
-    rand = random.randrange(1, 12)
+    rand = random.randrange(1, 6)
     with open('test.txt','a') as file:
         file.write(d+'\n')
     os.system('git add test.txt')
