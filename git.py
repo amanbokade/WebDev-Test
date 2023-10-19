@@ -1,16 +1,21 @@
 import os
-import random
+
+def makeCommitOnDay(day: int, total_days: int):
+    if day < 1 or day > total_days:
+        print("Invalid day. Please choose a day within the range.")
+        return
+
+    date_to_commit = f"{day} days ago"
+    with open('data.txt', 'a') as file:
+        file.write(f'{date_to_commit} <- this was the commit for the day!!\n')
+
+    os.system('git add data.txt')
+    os.system(f'git commit --date="{date_to_commit}" -m "Commit for day {day}"')
+    os.system('git push')
+
+total_days = 80  # Total number of days in the range
+chosen_day = 42  # Specify the day on which you want to make a commit
+
+makeCommitOnDay(chosen_day, total_days)
 
 
-for i in range(20):
-    d = str(i) + 'days ago'
-    rand = random.randrange(1, 12)
-    with open('test.txt','a') as file:
-        file.write(d)
-    os.system('git add .')
-    os.system('git commit --date=" 2023-'+str(rand)+'-'+d+'" -m "update"')
-os.system('git push -u origin main')
-
-#git commit --amend --no-edit --date="Fri Nov 6 20:00:00 2015 -0600" 
-#git fetch origin master
-#git rebase origin/master
